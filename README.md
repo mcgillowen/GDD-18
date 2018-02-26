@@ -33,3 +33,4 @@ Unity Desktop
 ### Estéthique
 
 Les éléments visuels seront en pixel art. La musique sera du 8-Bit maritime.
+Nous aurons une vue faux-2D, un jeu 2D avec une caméra 3D.
