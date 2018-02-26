@@ -10,7 +10,7 @@
 
 ## Description
 
-Le jeu est un platformer, se déroulant à l'intérieur d'une baleine. L'histoire est basé sur
+Le jeu est un platformer, se déroulant à l'intérieur d'une baleine. L'histoire est inspiré par
 l'histoire de Jonah et de la baleine qui l'a avalé.
 
 ### Méchaniques
@@ -33,8 +33,8 @@ la glotte afin de se faire éjecter hors de la baleine.
 
 ### Technologie
 
-Unity
+Unity Desktop
 
 ### Estethique
 
-
+Les éléments visuels seront en pixel art. La musique
