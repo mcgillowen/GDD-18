@@ -51,3 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40b7cb73bc5f45a1b0b4e8ba6f6aa1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerHealth: 0
+  PlayerSpeed: 0
+  EnemyTypes: []
+  Levels: []
