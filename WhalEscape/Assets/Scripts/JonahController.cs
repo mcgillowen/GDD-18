@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.WSA;
 
 public class JonahController : MonoBehaviour
 {
 	[Header("Player Settings")]
 	public int Health;
 	public float Speed;
+
+	public int HitAmount = 3;
+	public float HitDistance;
 
 	[Header("Jump")]
 	public Transform RayCastPosition;
@@ -15,6 +19,10 @@ public class JonahController : MonoBehaviour
 	public float JumpForce;
 
 	private Rigidbody2D _rigidbody2D;
+
+	private bool _hasStick = false;
+
+	private GameObject _stick;
 	// Use this for initialization
 	void Start ()
 	{
@@ -36,6 +44,23 @@ public class JonahController : MonoBehaviour
 			isGrounded = false;
 		}
 
+		if (_hasStick && Input.GetButtonDown("Hit"))
+		{
+			Debug.Log("Hit with stick");
+			var hit = Physics2D.Raycast(transform.position, transform.forward, HitDistance);
+			if (hit && hit.collider.CompareTag("Enemy"))
+			{
+				Debug.Log("Hit enemy with stick");
+				Debug.Log(HitAmount.ToString());
+				HitAmount--;
+			}
+		}
+
+		if (HitAmount < 1)
+		{
+			DropStick();
+		}
+
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
@@ -44,5 +69,21 @@ public class JonahController : MonoBehaviour
 		{
 			other.gameObject.SetActive(false);
 		}
+
+		if (other.CompareTag("Stick"))
+		{
+			other.gameObject.SetActive(false);
+			_hasStick = true;
+			_stick = other.gameObject;
+		}
+	}
+
+	private void DropStick()
+	{
+		_stick.transform.position = transform.position + new Vector3(-1f, 0.5f, 0f);
+		_stick.SetActive(true);
+		_stick = null;
+		_hasStick = false;
+		HitAmount = 3;
 	}
 }
