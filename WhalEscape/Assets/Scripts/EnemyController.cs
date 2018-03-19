@@ -32,19 +32,28 @@ public class EnemyController : MonoBehaviour {
 			scale.x = Mathf.Abs(scale.x);
 		}
 		transform.localScale = scale;
-		
-		RaycastHit2D hit = Physics2D.Raycast(patrollRaycastPosition.position, Vector2.left);
+		Vector3 ray = new Vector3(-0.5f*transform.localScale.x, -0.5f);
+		RaycastHit2D hit = Physics2D.Raycast(patrollRaycastPosition.position, ray);
+		Debug.DrawRay(patrollRaycastPosition.position, ray);
 		if (hit.collider != null) {
-			Debug.Log(hit.collider.tag);
+			if (hit.distance > 1 || hit.collider.CompareTag("Wall"))
+			{
+				Speed = -Speed;
+			} 
+			//Debug.Log(hit.collider.tag);
+		}
+		else
+		{
+			Speed = -Speed;
 		}
 	}
 	
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Wall"))
-		{
-			Speed = -Speed;
-		}
+//		if (other.CompareTag("Wall"))
+//		{
+//			Speed = -Speed;
+//		}
 	}
 }
 
