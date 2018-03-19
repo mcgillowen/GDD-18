@@ -9,14 +9,16 @@ public class JonahController : MonoBehaviour
 	public int Health;
 	public float Speed;
 
-	public int HitAmount = 3;
-	public float HitDistance;
-
 	[Header("Jump")]
-	public Transform RayCastPosition;
+	public Transform JumpRayCastPosition;
 	public float RayCastRadius;
 	public LayerMask JumpLayerMask;
 	public float JumpForce;
+
+	[Header("Hit")]
+	public Transform HitRayCastPosition;
+	public int HitAmount = 3;
+	public float HitDistance;
 
 	private Rigidbody2D _rigidbody2D;
 
@@ -35,9 +37,19 @@ public class JonahController : MonoBehaviour
 	{
 
 		float horizontalMovementAxis = Input.GetAxis("Horizontal");
-		_rigidbody2D.velocity = new Vector2(Speed * horizontalMovementAxis, _rigidbody2D.velocity.y);
+		
+		Vector2 velocity = new Vector2(horizontalMovementAxis * Speed, 0) {y = _rigidbody2D.velocity.y};
+		_rigidbody2D.velocity = velocity;
+		
+		Vector3 scale = transform.localScale;
+		if (velocity.x > 0) {
+			scale.x = Mathf.Abs(scale.x);
+		} else if (velocity.x < 0) {
+			scale.x = -Mathf.Abs(scale.x);
+		}
+		transform.localScale = scale;
 
-		bool isGrounded = Physics2D.OverlapCircle(RayCastPosition.position, RayCastRadius, JumpLayerMask);
+		bool isGrounded = Physics2D.OverlapCircle(JumpRayCastPosition.position, RayCastRadius, JumpLayerMask);
 		if (isGrounded && Input.GetButtonDown("Jump"))
 		{
 			_rigidbody2D.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
@@ -47,7 +59,8 @@ public class JonahController : MonoBehaviour
 		if (_hasStick && Input.GetButtonDown("Hit"))
 		{
 			Debug.Log("Hit with stick");
-			var hit = Physics2D.Raycast(transform.position, transform.forward, HitDistance);
+			var rayVec = new Vector2(transform.right.x * transform.localScale.x, 0f);
+			var hit = Physics2D.Raycast(HitRayCastPosition.position, rayVec, HitDistance);
 			if (hit && hit.collider.CompareTag("Enemy"))
 			{
 				Debug.Log("Hit enemy with stick");
@@ -80,7 +93,7 @@ public class JonahController : MonoBehaviour
 
 	private void DropStick()
 	{
-		_stick.transform.position = transform.position + new Vector3(-1f, 0.5f, 0f);
+		_stick.transform.position = transform.position + new Vector3(-1f * transform.localScale.x, 0.5f, 0f);
 		_stick.SetActive(true);
 		_stick = null;
 		_hasStick = false;

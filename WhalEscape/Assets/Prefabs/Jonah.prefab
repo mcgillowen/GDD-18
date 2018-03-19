@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4450309695495146}
   m_Layer: 11
-  m_Name: RayCastPosition
+  m_Name: JumpRayCastPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +45,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1234148984142356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4027832329148842}
+  m_Layer: 11
+  m_Name: HitRayCastPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4027832329148842
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1234148984142356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.263, y: 0.62, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4052198171858390}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4052198171858390
 Transform:
   m_ObjectHideFlags: 1
@@ -52,10 +80,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1073968122693288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.6378496, y: 0.17, z: 0.5360117}
-  m_LocalScale: {x: 0.5, y: 1, z: 1}
+  m_LocalPosition: {x: -3.43, y: 0.17, z: 0.5360117}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4450309695495146}
+  - {fileID: 4027832329148842}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -66,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1003350889238542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.63, y: 0, z: 0}
+  m_LocalPosition: {x: 0.63, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4052198171858390}
@@ -130,12 +159,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 0
   Speed: 1
-  RayCastPosition: {fileID: 4450309695495146}
+  JumpRayCastPosition: {fileID: 4450309695495146}
   RayCastRadius: 1
   JumpLayerMask:
     serializedVersion: 2
     m_Bits: 256
   JumpForce: 5
+  HitRayCastPosition: {fileID: 4027832329148842}
+  HitAmount: 3
+  HitDistance: 0.5
 --- !u!212 &212022715129362340
 SpriteRenderer:
   m_ObjectHideFlags: 1
