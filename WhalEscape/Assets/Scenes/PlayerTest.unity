@@ -122,7 +122,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4055107454997430, guid: 4bc8aaef0f67b409ea243b3a2f8333f6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6.33
+      value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: 4055107454997430, guid: 4bc8aaef0f67b409ea243b3a2f8333f6, type: 2}
       propertyPath: m_LocalPosition.y
@@ -152,6 +152,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4055107454997430, guid: 4bc8aaef0f67b409ea243b3a2f8333f6, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bc8aaef0f67b409ea243b3a2f8333f6, type: 2}
   m_IsPrefabParent: 0
@@ -164,11 +168,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4549771510357594, guid: 5627b7774edaa43259a438365b71d6f2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.423
+      value: -1.07
       objectReference: {fileID: 0}
     - target: {fileID: 4549771510357594, guid: 5627b7774edaa43259a438365b71d6f2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.288
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 4549771510357594, guid: 5627b7774edaa43259a438365b71d6f2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -208,6 +212,7 @@ GameObject:
   - component: {fileID: 356263113}
   - component: {fileID: 356263112}
   - component: {fileID: 356263111}
+  - component: {fileID: 356263115}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -278,6 +283,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &356263115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 356263110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cea2092cf1e4496a9fef3b4ddfe00c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &871765948
 Prefab:
   m_ObjectHideFlags: 0
@@ -520,7 +536,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4052198171858390, guid: 1d502f624610f4da3bba1aabe2abbc2d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.6378496
+      value: -3.43
       objectReference: {fileID: 0}
     - target: {fileID: 4052198171858390, guid: 1d502f624610f4da3bba1aabe2abbc2d, type: 2}
       propertyPath: m_LocalPosition.y

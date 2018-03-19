@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour {
 		
 		RaycastHit2D hit = Physics2D.Raycast(patrollRaycastPosition.position, Vector2.left);
 		if (hit.collider != null) {
-			Debug.Log(hit.collider.tag);
+			//Debug.Log(hit.collider.tag);
 		}
 	}
 	
