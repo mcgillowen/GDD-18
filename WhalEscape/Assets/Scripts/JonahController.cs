@@ -5,6 +5,12 @@ using UnityEngine.XR.WSA;
 
 public class JonahController : MonoBehaviour
 {
+
+	[Header("Game Manager")]
+	public GameObject Manager;
+
+	private GameManager _gameManager;
+	
 	[Header("Player Settings")]
 	public int Health;
 	public float Speed;
@@ -28,8 +34,17 @@ public class JonahController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+
+		_gameManager = Manager.GetComponent<GameManager>();
 		_rigidbody2D = GetComponent<Rigidbody2D>();
 		_rigidbody2D.velocity = Vector2.zero;
+		if (_gameManager.CurrentGameState == GameManager.GameState.Production)
+		{
+			Health = _gameManager.PlayerHealth;
+			Speed = _gameManager.PlayerSpeed;
+			HitAmount = _gameManager.HitAmount;
+			HitDistance = _gameManager.HitDistance;
+		}
 	}
 	
 	// Update is called once per frame
