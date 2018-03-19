@@ -86,4 +86,10 @@ public class JonahController : MonoBehaviour
 		_hasStick = false;
 		HitAmount = 3;
 	}
+
+	public void takeDamage()
+	{
+		Health--;
+		Debug.Log("Jonah took 1 damage");
+	}
 }
