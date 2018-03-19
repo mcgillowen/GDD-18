@@ -158,13 +158,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 0
-  Speed: 1
+  Speed: 1.5
   JumpRayCastPosition: {fileID: 4450309695495146}
   RayCastRadius: 1
   JumpLayerMask:
     serializedVersion: 2
-    m_Bits: 256
-  JumpForce: 5
+    m_Bits: 768
+  JumpForce: 6
   HitRayCastPosition: {fileID: 4027832329148842}
   HitAmount: 3
   HitDistance: 0.5
