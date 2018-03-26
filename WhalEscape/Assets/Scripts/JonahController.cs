@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.XR.WSA;
 
@@ -65,6 +66,8 @@ public class JonahController : MonoBehaviour
 			{
 				Debug.Log("Hit enemy with stick");
 				Debug.Log(HitAmount.ToString());
+				EnemyHealth enemyHealth = (EnemyHealth)hit.collider.GetComponent(typeof(EnemyHealth));
+				enemyHealth.takeDamage();
 				HitAmount--;
 			}
 		}

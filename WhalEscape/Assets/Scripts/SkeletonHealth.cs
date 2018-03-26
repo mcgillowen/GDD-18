@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using DefaultNamespace;
 using UnityEngine;
 
-public class SkeletonHealth : MonoBehaviour {
+public class SkeletonHealth : MonoBehaviour, EnemyHealth {
 	[Range(1,5)]
 	public int health;
 
 
-	void takeDamage(int damage)
+	public void takeDamage(int damage)
 	{
 		health -= damage;
 		if (health <= 0)
@@ -17,7 +18,7 @@ public class SkeletonHealth : MonoBehaviour {
 		}
 	}
 
-	void takeDamage()
+	public void takeDamage()
 	{
 		health--;
 		if (health <= 0)
