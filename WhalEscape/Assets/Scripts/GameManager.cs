@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+	public enum GameState
+	{
+		Development,
+		Production
+	}
+	
 	[Header("Player Settings")]
-	public int PlayerHealth;
-	public int PlayerSpeed;
+	public int PlayerHealth = 2;
+	public float PlayerSpeed = 2f;
+	public int HitAmount = 3;
+	public float HitDistance = 0.5f;
 
 	[Header("Enemy Settings")]
 	public GameObject[] EnemyTypes;
 
 	[Header("Game Settings")]
 	public Level[] Levels = new Level[0];
+	public GameState CurrentGameState = GameState.Development;
 
 
 	private static GameManager _gameManager;
