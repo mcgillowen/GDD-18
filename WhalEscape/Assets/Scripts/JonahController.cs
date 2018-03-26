@@ -30,6 +30,8 @@ public class JonahController : MonoBehaviour
 	private Rigidbody2D _rigidbody2D;
 	private Collider2D _collider2D;
 
+	private Animator _animator;
+
 	private bool _hasStick = false;
 
 	private GameObject _stick;
@@ -40,6 +42,7 @@ public class JonahController : MonoBehaviour
 		_gameManager = Manager.GetComponent<GameManager>();
 		_rigidbody2D = GetComponent<Rigidbody2D>();
 		_collider2D = GetComponent<BoxCollider2D>();
+		_animator = GetComponent<Animator>();
 		_rigidbody2D.velocity = Vector2.zero;
 		if (_gameManager.CurrentGameState == GameManager.GameState.Production)
 		{
@@ -72,8 +75,11 @@ public class JonahController : MonoBehaviour
 		if (isGrounded && Input.GetButtonDown("Jump"))
 		{
 			_rigidbody2D.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+			_animator.SetBool("Jump", true);
 			isGrounded = false;
 		}
+		
+		_animator.SetBool("Jump", false);
 
 		if (_hasStick && Input.GetButtonDown("Hit"))
 		{
