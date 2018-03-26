@@ -21,7 +21,7 @@ public class SkeletonAttack : MonoBehaviour {
 		Vector3 rayAttack = new Vector3(transform.localScale.x * -1f, 0f);
 		RaycastHit2D attackHit = Physics2D.Raycast(_rayOrigin.position, rayAttack);
 		Debug.DrawRay(_rayOrigin.position, rayAttack, Color.red);
-		if (attackHit != null)
+		if (attackHit.collider != null)
 		{
 			if (attackHit.collider.CompareTag("Player") && attackHit.distance < 1 && nextAttack < Time.time)
 			{

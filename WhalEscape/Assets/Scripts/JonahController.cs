@@ -28,6 +28,7 @@ public class JonahController : MonoBehaviour
 	public float HitDistance;
 
 	private Rigidbody2D _rigidbody2D;
+	private Collider2D _collider2D;
 
 	private bool _hasStick = false;
 
@@ -38,6 +39,7 @@ public class JonahController : MonoBehaviour
 
 		_gameManager = Manager.GetComponent<GameManager>();
 		_rigidbody2D = GetComponent<Rigidbody2D>();
+		_collider2D = GetComponent<BoxCollider2D>();
 		_rigidbody2D.velocity = Vector2.zero;
 		if (_gameManager.CurrentGameState == GameManager.GameState.Production)
 		{
@@ -65,7 +67,8 @@ public class JonahController : MonoBehaviour
 		}
 		transform.localScale = scale;
 
-		bool isGrounded = Physics2D.OverlapCircle(JumpRayCastPosition.position, RayCastRadius, JumpLayerMask);
+		bool isGrounded = Physics2D.OverlapCircle(JumpRayCastPosition.position, RayCastRadius, JumpLayerMask) &&
+		                  _rigidbody2D.velocity.y < 0.001;
 		if (isGrounded && Input.GetButtonDown("Jump"))
 		{
 			_rigidbody2D.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
@@ -77,7 +80,7 @@ public class JonahController : MonoBehaviour
 			Debug.Log("Hit with stick");
 			var rayVec = new Vector2(transform.right.x * transform.localScale.x, 0f);
 			var hit = Physics2D.Raycast(HitRayCastPosition.position, rayVec, HitDistance);
-			if (hit && hit.collider.CompareTag("Enemy"))
+			if (hit.collider && hit.collider.CompareTag("Enemy"))
 			{
 				Debug.Log("Hit enemy with stick");
 				Debug.Log(HitAmount.ToString());

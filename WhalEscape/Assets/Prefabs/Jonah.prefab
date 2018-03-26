@@ -80,7 +80,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1073968122693288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.43, y: 0.17, z: 0.5360117}
+  m_LocalPosition: {x: -3.43, y: 0.126, z: 0.5360117}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4450309695495146}
@@ -95,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1003350889238542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.63, y: 0.01, z: 0}
+  m_LocalPosition: {x: 0.625, y: 0.001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4052198171858390}
@@ -133,7 +133,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.625, y: 0.625}
+  m_Offset: {x: 0.62526333, y: 0.6269692}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -144,7 +144,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.2416747, y: 1.2382634}
   m_EdgeRadius: 0
 --- !u!114 &114892250831142866
 MonoBehaviour:
@@ -161,11 +161,11 @@ MonoBehaviour:
   Health: 0
   Speed: 2
   JumpRayCastPosition: {fileID: 4450309695495146}
-  RayCastRadius: 1
+  RayCastRadius: 0.1
   JumpLayerMask:
     serializedVersion: 2
     m_Bits: 768
-  JumpForce: 6
+  JumpForce: 7
   HitRayCastPosition: {fileID: 4027832329148842}
   HitAmount: 3
   HitDistance: 0.5
@@ -201,7 +201,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1095150279
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 12ef7cbdfe0e143fa858a324456c8979, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
