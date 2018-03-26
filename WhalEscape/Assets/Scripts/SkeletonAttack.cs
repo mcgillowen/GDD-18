@@ -8,9 +8,15 @@ public class SkeletonAttack : MonoBehaviour {
 	private GameObject player;
 	private JonahController _jonahController;
 	private Transform _rayOrigin;
+	[Header("Sound")]
+	private AudioSource audioSrc;
+	public AudioClip attackSound;
+	[Range(0, 1)] public float volume;
 
 	// Use this for initialization
 	void Start () {
+		// second audioSrc is for attack
+		audioSrc = GetComponents<AudioSource>()[1];
 		player = GameObject.FindGameObjectWithTag ("Player");
 		_jonahController = player.GetComponent<JonahController>();
 		_rayOrigin = transform.Find("RayCastOrigin").gameObject.transform;
@@ -32,6 +38,7 @@ public class SkeletonAttack : MonoBehaviour {
 	
 	void attack()
 	{
+		audioSrc.PlayOneShot(attackSound, volume);
 		nextAttack = Time.time + attackFreq;
 		_jonahController.takeDamage();
 	}
