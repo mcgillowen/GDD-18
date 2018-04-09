@@ -35,6 +35,18 @@ public class JonahController : MonoBehaviour
 	private bool _hasStick = false;
 
 	private GameObject _stick;
+
+	[Header("Sounds")] 
+	[Range(0, 1)] public float SoundVolume;
+	public AudioClip TakeDamageSound;
+	public AudioClip DieSound;
+	public AudioClip AttackSound;
+	public AudioClip JumpSound;
+
+	private AudioSource _takeDamageAudioSrc;
+	private AudioSource _attackAudioSrc;
+	private AudioSource _moveAudioSrc;
+	
 	// Use this for initialization
 	void Start ()
 	{
@@ -51,6 +63,9 @@ public class JonahController : MonoBehaviour
 			HitAmount = _gameManager.HitAmount;
 			HitDistance = _gameManager.HitDistance;
 		}
+		_takeDamageAudioSrc = GetComponents<AudioSource>()[0];
+		_attackAudioSrc = GetComponents<AudioSource>()[1];
+		_moveAudioSrc = GetComponents<AudioSource>()[2];
 	}
 	
 	// Update is called once per frame
@@ -74,6 +89,7 @@ public class JonahController : MonoBehaviour
 		                  _rigidbody2D.velocity.y < 0.001;
 		if (isGrounded && Input.GetButtonDown("Jump"))
 		{
+			_moveAudioSrc.PlayOneShot(JumpSound, SoundVolume);
 			_rigidbody2D.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
 			_animator.SetBool("Jump", true);
 			isGrounded = false;
@@ -84,6 +100,7 @@ public class JonahController : MonoBehaviour
 		if (_hasStick && Input.GetButtonDown("Hit"))
 		{
 			Debug.Log("Hit with stick");
+			_attackAudioSrc.PlayOneShot(AttackSound, SoundVolume);
 			var rayVec = new Vector2(transform.right.x * transform.localScale.x, 0f);
 			var hit = Physics2D.Raycast(HitRayCastPosition.position, rayVec, HitDistance);
 			if (hit.collider && hit.collider.CompareTag("Enemy"))
@@ -130,6 +147,7 @@ public class JonahController : MonoBehaviour
 	public void takeDamage()
 	{
 		Health--;
+		_takeDamageAudioSrc.PlayOneShot(TakeDamageSound, SoundVolume);
 		Debug.Log("Jonah took 1 damage");
 	}
 }
