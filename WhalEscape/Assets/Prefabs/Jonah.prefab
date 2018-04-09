@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f207f849b7747deaae0431c066602b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Manager: {fileID: 0}
+  Manager: {fileID: 1159648360296256, guid: fc25d0c5b3b7a4ca9af3ec9e7f31fffb, type: 2}
   Health: 0
   Speed: 2
   JumpRayCastPosition: {fileID: 4450309695495146}
@@ -412,11 +412,6 @@ MonoBehaviour:
   HitRayCastPosition: {fileID: 4027832329148842}
   HitAmount: 3
   HitDistance: 0.5
-  SoundVolume: 1
-  TakeDamageSound: {fileID: 8300000, guid: 2df95b0b8a3f5e2458b48734b9f2b25b, type: 3}
-  DieSound: {fileID: 0}
-  AttackSound: {fileID: 8300000, guid: fe4511e0582fdf54596ab4427a177aa5, type: 3}
-  JumpSound: {fileID: 8300000, guid: 76a73b22dafef3f44851b0296c7ac566, type: 3}
 --- !u!212 &212022715129362340
 SpriteRenderer:
   m_ObjectHideFlags: 1

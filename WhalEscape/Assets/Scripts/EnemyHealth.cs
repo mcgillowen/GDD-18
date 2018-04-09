@@ -2,8 +2,8 @@
 {
     public interface EnemyHealth
     {
-        void takeDamage();
+        void TakeDamage();
 
-        void takeDamage(int damage);
+        void TakeDamage(int damage);
     }
 }
