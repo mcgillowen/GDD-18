@@ -13,43 +13,39 @@ public class SkeletonHealth : MonoBehaviour, EnemyHealth {
 	public AudioClip dieSound;
 	[Range(0, 1)] public float volume;
 
-	private void start()
+	private void Start()
 	{
 		// first audio source is for health
 		audioSrc = GetComponents<AudioSource>()[0];
 	}
-	
-	
 
 
-	public void takeDamage(int damage)
+	public void TakeDamage(int damage)
 	{
 		health -= damage;
 		if (health <= 0)
 		{
-			die();
+			Die();
 		}
 		audioSrc.PlayOneShot(takeDamageSound, volume);
 	}
 
-	public void takeDamage()
+	public void TakeDamage()
 	{
 		health--;
 		if (health <= 0)
 		{
-			die();
+			Die();
 		}
 		audioSrc.PlayOneShot(takeDamageSound, volume);
 
 	}
 
 
-	void die()
+	void Die()
 	{
 		audioSrc.PlayOneShot(dieSound, volume);
-		Destroy(this.gameObject);
+		Destroy(gameObject);
 	}
-
-	
 	
 }

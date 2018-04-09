@@ -55,8 +55,7 @@ public class JonahController : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
-	{
-
+	{	
 		float horizontalMovementAxis = Input.GetAxis("Horizontal");
 		
 		Vector2 velocity = new Vector2(horizontalMovementAxis * Speed, 0) {y = _rigidbody2D.velocity.y};
@@ -75,11 +74,9 @@ public class JonahController : MonoBehaviour
 		if (isGrounded && Input.GetButtonDown("Jump"))
 		{
 			_rigidbody2D.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
-			_animator.SetBool("Jump", true);
+			_animator.SetTrigger("Jump");
 			isGrounded = false;
 		}
-		
-		_animator.SetBool("Jump", false);
 
 		if (_hasStick && Input.GetButtonDown("Hit"))
 		{
@@ -91,7 +88,7 @@ public class JonahController : MonoBehaviour
 				Debug.Log("Hit enemy with stick");
 				Debug.Log(HitAmount.ToString());
 				EnemyHealth enemyHealth = (EnemyHealth)hit.collider.GetComponent(typeof(EnemyHealth));
-				enemyHealth.takeDamage();
+				enemyHealth.TakeDamage();
 				HitAmount--;
 			}
 		}
@@ -127,9 +124,10 @@ public class JonahController : MonoBehaviour
 		HitAmount = 3;
 	}
 
-	public void takeDamage()
+	public void TakeDamage()
 	{
 		Health--;
+		_animator.SetTrigger("Hit");
 		Debug.Log("Jonah took 1 damage");
 	}
 }
