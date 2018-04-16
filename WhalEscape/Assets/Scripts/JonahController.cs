@@ -115,6 +115,12 @@ public class JonahController : MonoBehaviour
 			DropStick();
 		}
 
+		if (Health < 0)
+		{
+			Debug.Log("Jonah Died");
+			_animator.SetBool("Dead", true);
+		}
+
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
