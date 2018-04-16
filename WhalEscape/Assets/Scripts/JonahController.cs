@@ -117,8 +117,7 @@ public class JonahController : MonoBehaviour
 
 		if (Health < 0)
 		{
-			Debug.Log("Jonah Died");
-			_animator.SetBool("Dead", true);
+			Died();
 		}
 
 	}
@@ -153,5 +152,11 @@ public class JonahController : MonoBehaviour
 		Health--;
 		_animator.SetTrigger("Hit");
 		Debug.Log("Jonah took 1 damage");
+	}
+
+	public void Died()
+	{
+		Debug.Log("Jonah Died");
+		_animator.SetBool("Dead", true);
 	}
 }
