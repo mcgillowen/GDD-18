@@ -56,5 +56,11 @@ MonoBehaviour:
   HitAmount: 3
   HitDistance: 0.5
   EnemyTypes: []
-  Levels: []
-  CurrentGameState: 0
+  Levels:
+  - Name: level1
+    LevelDifficulty: 1
+  - Name: level2
+    LevelDifficulty: 2
+  CurrentLevel: 0
+  CurrentDevState: 0
+  CurrentGameState: 1
