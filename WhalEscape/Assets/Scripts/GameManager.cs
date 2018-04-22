@@ -114,10 +114,11 @@ public class GameManager : MonoBehaviour
 		if (CurrentGameState != GameState.Game)
 			return;
 		GetUI();
+		_player = GameObject.Find ("Jonah");
 		if (_player != null)
 			_playerStartPosition = _player.transform.position;
 		else
-			Debug.LogError ("Object with 'Player' name not found");
+			Debug.LogError ("Object with 'Jonah' name not found");
 		
 		InitLevelParameters(); 
 		
@@ -174,8 +175,12 @@ public class GameManager : MonoBehaviour
 							CurrentGameState = GameState.End;
 							SceneManager.LoadScene ("end_screen");
 						}
-					} else {
-						InitLevelParameters ();
+					} else
+					{
+						//_levelState = LevelState.Ready;
+						//_initLevel = true;
+						//SceneManager.LoadScene(Levels[CurrentLevel].Name);
+						InitLevelParameters();
 					}
 				}
 				break;

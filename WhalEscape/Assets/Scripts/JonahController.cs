@@ -13,6 +13,8 @@ public class JonahController : MonoBehaviour
 	public int Health;
 	public float Speed;
 
+	private int _initHealth;
+
 	[Header("Jump")]
 	public Transform JumpRayCastPosition;
 	public float RayCastRadius;
@@ -64,6 +66,8 @@ public class JonahController : MonoBehaviour
 		_takeDamageAudioSrc = GetComponents<AudioSource>()[0];
 		_attackAudioSrc = GetComponents<AudioSource>()[1];
 		_moveAudioSrc = GetComponents<AudioSource>()[2];
+
+		_initHealth = Health;
 	}
 	
 	// Update is called once per frame
@@ -103,6 +107,12 @@ public class JonahController : MonoBehaviour
 			_animator.SetTrigger("Jump");
 		}
 
+		if (transform.position.y < -2)
+		{
+			Health = 0;
+			Died();
+		}
+
 		if (_hasStick && Input.GetButtonDown("Hit"))
 		{
 			Debug.Log("Hit with stick");
@@ -125,6 +135,7 @@ public class JonahController : MonoBehaviour
 
 		if (Health < 0)
 		{
+			
 			Died();
 		}
 
@@ -167,6 +178,7 @@ public class JonahController : MonoBehaviour
 	{
 		Debug.Log("Jonah Died");
 		_animator.SetBool("Dead", true);
+		Health = _initHealth;
 		_gameManager.JonahDied();
 	}
 }
