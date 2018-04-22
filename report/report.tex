@@ -31,7 +31,25 @@ Le but de ce projet était d'appliquer en pratique ce qui a été vu en cours du
 
 \section{Story}
 
-Jonah est un naufragé sur une île déserte. Il parvient a fabriquer un radeau et à quitter l'île. Durant son périple, une baleine l'a attaqué et l'a avaler avec une partie de son radeau. Jonah doit maintenant s'échapper de la baleine, en commençant dans l'estomac. Il pourra utiliser les objets qu'il trouvera. Ces objets proviennent des restes du radeau ou ont été avalé par la baleine auparavant. Il devra aussi faire face à des ennemis tel que des parasites ou d'autres naufragés malchanceux.%  Il devra remonter jusqu'à atteindre la langue de la baleine pour secouer la glotte afin de se faire éjecter hors de la baleine.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{res/story1.png}
+    \caption{Jonah sur son radeau}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{res/story2.png}
+    \caption{La baleine mange Jonah et son embarquation}
+\end{figure}
+
+Jonah a été victime d'un naufrage sur une île déserte. Seul survivant, il parvient a fabriquer un radeau et à quitter l'île. En s'éloignant de l'île, une baleine l'a attaqué et l'a avaler avec une partie de son radeau. Le joueur doit maintenant contrôller Jonah et l'aider à s'échapper de la baleine, en commençant dans les intestins. Il pourra utiliser les objets qu'il trouvera. Ces objets proviennent des restes du radeau ou ont été avalé par la baleine auparavant. Il devra aussi faire face à des ennemis tel que des blobs de sucs gastriques ou les restes d'autres naufragés malchanceux. Il devra remonter le système digestif de l'animal en passant par les intestincs et l'estomac avant d'atteindre l'évent qui lui permettera de sortir.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{res/story3.png}
+    \caption{Jonah a réussi à sortir de la baleine}
+\end{figure}
 
 \section{Mechanics}
 
@@ -40,19 +58,19 @@ Jonah est un naufragé sur une île déserte. Il parvient a fabriquer un radeau 
 \subsubsection{Générales}
 \begin{itemize}
     \item Si Jonah tombe dans le vide il meurt
-    \item Jonah a X points de vie
+    \item Jonah a X points de vie % TODO: A corriger
     \item À chaque fois qu'il se fait taper par un enemi, il perd un point de vie
     \item Lorsque Jonah n'a plus de points de vie il meurt
     \item Jonah peut attaquer seulement si il est équipé d'une rame
-    \item Pour s'équiper d'u
-    \item Au bout de X coups porté avec la rame, celle-ci se détruit
-    \item Lorsque Jonah meurt ine rame Jonah doit en récupérer une dans le mondel recommence au début du niveau
+    \item Pour s'équiper de rame, il doit marcher dessus
+    \item Au bout de 3 coups porté avec la rame, celle-ci échappe des mains de Jonah et il doit la ramasser à nouveau
+    \item Lorsque Jonah meurt, il recommence au début du niveau
 \end{itemize}
 
 \subsubsection{Level 1}
 \begin{itemize}
     \item Jonah doit trouver la zone qui le fera sortir de ce niveau
-    \item Les enemis dans ce monde sont les anticorps
+    \item Les enemis sont des squelettes d'autres naufragés malchanceux.
 \end{itemize}
 
 \begin{figure}[H]
@@ -66,6 +84,7 @@ Jonah est un naufragé sur une île déserte. Il parvient a fabriquer un radeau 
 \begin{itemize}
     \item Jonah doit monter les plateformes pour éviter de se faire ronger par l'acide gastrique qui remonte
     \item Si Jonah se fait toucher par l'acide (rattrapé par la caméra) il meurt
+    \item Des blobs d'acides vont traverser l'écran afin de gêner Jonah dans sa progression
 \end{itemize}
 
 \begin{figure}[H]
@@ -76,7 +95,7 @@ Jonah est un naufragé sur une île déserte. Il parvient a fabriquer un radeau 
 
 \subsection{Protagonist}
 
-Le joueur se met dans la peau de Jonah un pêcheur qui s'est fait gober par une baleine.
+Le joueur se met dans la peau de Jonah un naufragé qui s'est fait gober par une baleine.
 
 Verbes d'actions:
 \begin{enumerate}
@@ -87,7 +106,7 @@ Verbes d'actions:
 
 \subsection{Antagonists}
 
-\subsubsection{Blobb}
+\subsubsection{Blob}
 Une bactérie flottante se baladant tel un poisson rouge.
 
 Verbes d'actions:
@@ -95,13 +114,13 @@ Verbes d'actions:
     \item Déplacement sinuosoidale gauche droite dans l'air
 \end{enumerate}
 
-\subsubsection{Anticorps}
-Les anti-corps de la baleine veillent à ce qu'aucune bactérie non-autorisé se balade dans le corps de la baleine.
+\subsubsection{Squelette}
+Les squelette d'anciennes victimes de la baleine veillent à ce qu'aucun intrus se balade dans le corps de la baleine. Ils patrouillent dans les intestins.
 
 Verbes d'actions:
 \begin{enumerate}
     \item Patrouille à pied de gauche à droite
-    \item Attaquer si un enemi se trouve devant lui.
+    \item Attaquer si un ennemi se trouve devant lui.
 \end{enumerate}
 
 \subsubsection{Baleine}
@@ -135,7 +154,7 @@ Pour Jonah nous nous sommes fortement inspiré de l'image de Robinson Crusoé qu
     \caption{Les frames de déplacement de Jonah}
 \end{figure}
 
-\subsubsection{Blobb}
+\subsubsection{Blob}
 L'idée avec le blobb était de faire quelque chose de semblable à l'idée que l'on peut se faire d'une molécule tout en restant simple pour pouvoir le dessiner facilement. La couleur verte a été choisie pour bien mettre en valeur que c'est un élément avec lequel on interagit dans le jeu.
 
 \begin{figure}[H]
