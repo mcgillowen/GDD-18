@@ -49,7 +49,8 @@ public class GameManager : MonoBehaviour
 	private Vector3 _playerStartPosition;
 	private bool _finishLevel;
 	private bool _initLevel;
-	
+
+	private GameObject _canvas;
 	private GameObject _startPanel;
 	private GameObject _uiPanel;
 	private GameObject _diePanel;
@@ -103,12 +104,20 @@ public class GameManager : MonoBehaviour
 	private void InitLevel () {
 		if (CurrentGameState != GameState.Game)
 			return;
-		_uiPanel = GameObject.Find ("UIPanel");
-		_startPanel = GameObject.Find ("StartPanel");
+		_canvas = GameObject.Find("UICanvas");
+		_uiPanel = _canvas.transform.FindChild("UIPanel").gameObject;
+		//_uiPanel = GameObject.Find ("UIPanel");
+		_startPanel = _canvas.transform.FindChild("StartPanel").gameObject;
+		//_startPanel = GameObject.Find ("StartPanel");
 		GameObject startTextGameObject = GameObject.Find ("StartText");
 		if (startTextGameObject != null)
 			_startText = startTextGameObject.GetComponent<Text> ();
-		_diePanel = GameObject.Find ("DiePanel");
+		GameObject canvas = GameObject.Find("UICanvas");
+		_diePanel = canvas.transform.FindChild("DiePanel").gameObject;
+		// _diePanel = GameObject.Find ("DiePanel");
+		
+		//Debug.Log(_diePanel.ToString());
+		_diePanel.SetActive (true);
 		if (_diePanel != null)
 			_dieText = GameObject.Find ("DieText").GetComponent<Text> ();
 		_player = GameObject.Find ("Jonah");
@@ -191,12 +200,14 @@ public class GameManager : MonoBehaviour
 	}
 	
 	private void Lose () {
-		InitLevel();
+		//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		// InitLevel();
 		_dieText.text = "Jonah died!\n\n<size=40>press jump button to continue</size>";
 		_diePanel.SetActive (true);
 		_levelState = LevelState.End;
 		_uiPanel.SetActive (false);
 		_finishLevel = false;
+		
 	}
 
 	public void LevelFinished()
