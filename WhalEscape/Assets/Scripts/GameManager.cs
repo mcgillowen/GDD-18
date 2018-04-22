@@ -50,8 +50,7 @@ public class GameManager : MonoBehaviour
 	private Vector3 _playerStartPosition;
 	private bool _finishLevel;
 	private bool _initLevel;
-
-	private GameObject _canvas;
+	
 	private GameObject _startPanel;
 	private GameObject _uiPanel;
 	private GameObject _diePanel;
@@ -84,7 +83,7 @@ public class GameManager : MonoBehaviour
 	void Update () {
 		switch (CurrentGameState) {
 			case GameState.Start:
-				if (!changedImage && Input.GetButtonDown ("Hit"))
+				if (!changedImage && Input.GetButtonDown ("Submit"))
 				{
 					changedImage = true;
 					var canvas = GameObject.Find("Canvas");
@@ -114,23 +113,7 @@ public class GameManager : MonoBehaviour
 	private void InitLevel () {
 		if (CurrentGameState != GameState.Game)
 			return;
-		_canvas = GameObject.Find("UICanvas");
-		_uiPanel = _canvas.transform.FindChild("UIPanel").gameObject;
-		//_uiPanel = GameObject.Find ("UIPanel");
-		_startPanel = _canvas.transform.FindChild("StartPanel").gameObject;
-		//_startPanel = GameObject.Find ("StartPanel");
-		GameObject startTextGameObject = GameObject.Find ("StartText");
-		if (startTextGameObject != null)
-			_startText = startTextGameObject.GetComponent<Text> ();
-		GameObject canvas = GameObject.Find("UICanvas");
-		_diePanel = canvas.transform.FindChild("DiePanel").gameObject;
-		// _diePanel = GameObject.Find ("DiePanel");
-		
-		//Debug.Log(_diePanel.ToString());
-		_diePanel.SetActive (true);
-		if (_diePanel != null)
-			_dieText = GameObject.Find ("EndText").GetComponent<Text> ();
-		_player = GameObject.Find ("Jonah");
+		GetUI();
 		if (_player != null)
 			_playerStartPosition = _player.transform.position;
 		else
@@ -201,14 +184,15 @@ public class GameManager : MonoBehaviour
 
 	private void GetUI()
 	{
-		_uiPanel = GameObject.Find ("UIPanel");
-		_startPanel = GameObject.Find ("UICanvas/StartPanel");
-		GameObject startTextGameObject = GameObject.Find ("UICanvas/StartPanel/StartText");
-		if (startTextGameObject != null)
-			_startText = startTextGameObject.GetComponent<Text> ();
-		_diePanel = GameObject.Find ("UICanvas/EndPanel");
+		var canvas = GameObject.Find("UICanvas");
+		_uiPanel = canvas.transform.Find("UIPanel").gameObject;
+		_startPanel = canvas.transform.Find("StartPanel").gameObject;
+		if (_startPanel != null)
+			_startText = _startPanel.transform.Find("StartText").GetComponent<Text> ();
+		_diePanel = canvas.transform.Find("EndPanel").gameObject;
 		if (_diePanel != null)
-			_dieText = GameObject.Find ("UICanvas/EndPanel/EndText").GetComponent<Text> ();
+			_dieText = _diePanel.transform.Find("EndText").GetComponent<Text> ();
+		
 	}
 	
 	private void Win ()
@@ -228,7 +212,6 @@ public class GameManager : MonoBehaviour
 		_levelState = LevelState.End;
 		_uiPanel.SetActive (false);
 		_finishLevel = false;
-		
 	}
 
 	public void LevelFinished()

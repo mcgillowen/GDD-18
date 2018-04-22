@@ -975,14 +975,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1107028986272378, guid: 634bf7e166b614cd9ad8bd727797a73d, type: 2}
-      propertyPath: m_Name
-      value: EndPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1818377904621620, guid: 634bf7e166b614cd9ad8bd727797a73d, type: 2}
-      propertyPath: m_Name
-      value: EndText
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 634bf7e166b614cd9ad8bd727797a73d, type: 2}
   m_IsPrefabParent: 0
