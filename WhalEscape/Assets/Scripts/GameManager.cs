@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
 		if (CurrentGameState != GameState.Game)
 			return;
 		_canvas = GameObject.Find("UICanvas");
-		_uiPanel = _canvas.transform.FindChild("UIPanel").gameObject;
+  		_uiPanel = _canvas.transform.FindChild("UIPanel").gameObject;
 		//_uiPanel = GameObject.Find ("UIPanel");
 		_startPanel = _canvas.transform.FindChild("StartPanel").gameObject;
 		//_startPanel = GameObject.Find ("StartPanel");
