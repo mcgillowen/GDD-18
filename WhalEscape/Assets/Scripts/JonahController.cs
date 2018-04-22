@@ -7,9 +7,6 @@ using UnityEngine.XR.WSA;
 public class JonahController : MonoBehaviour
 {
 
-	[Header("Game Manager")]
-	public GameObject Manager;
-
 	private GameManager _gameManager;
 	
 	[Header("Player Settings")]
@@ -49,8 +46,9 @@ public class JonahController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-
-		_gameManager = Manager.GetComponent<GameManager>();
+		GameObject gameManagerObject = GameObject.Find ("GameManager");
+		if (gameManagerObject != null)
+			_gameManager = gameManagerObject.GetComponent<GameManager> ();
 		_rigidbody2D = GetComponent<Rigidbody2D>();
 		_collider2D = GetComponent<BoxCollider2D>();
 		_animator = GetComponent<Animator>();
@@ -71,6 +69,11 @@ public class JonahController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{	
+		
+		if (_gameManager != null && !_gameManager.CanPlay ()) {
+			return;
+		}
+		
 		float horizontalMovementAxis = Input.GetAxis("Horizontal");
 		
 		Vector2 velocity = new Vector2(horizontalMovementAxis * Speed, 0) {y = _rigidbody2D.velocity.y};
@@ -98,7 +101,6 @@ public class JonahController : MonoBehaviour
 			_moveAudioSrc.PlayOneShot(JumpSound, SoundVolume);
 			_rigidbody2D.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
 			_animator.SetTrigger("Jump");
-			isGrounded = false;
 		}
 
 		if (_hasStick && Input.GetButtonDown("Hit"))
@@ -110,8 +112,6 @@ public class JonahController : MonoBehaviour
 			if (hit.collider && hit.collider.CompareTag("Enemy"))
 			{
 				_attackAudioSrc.PlayOneShot(AttackSound, SoundVolume);
-				// Debug.Log("Hit enemy with stick");
-				// Debug.Log(HitAmount.ToString());
 				EnemyHealth enemyHealth = (EnemyHealth)hit.collider.GetComponent(typeof(EnemyHealth));
 				enemyHealth.TakeDamage();
 				HitAmount--;

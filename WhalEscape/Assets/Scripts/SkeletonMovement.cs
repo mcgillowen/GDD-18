@@ -29,9 +29,9 @@ public class SkeletonMovement : MonoBehaviour {
 		}
 		transform.localScale = scale;
 		Vector3 ray = new Vector3(-0.5f*transform.localScale.x, -0.5f);
-		RaycastHit2D hit = Physics2D.Raycast(_rayOrigin.position, ray);
+		RaycastHit2D hit = Physics2D.Raycast(_rayOrigin.position, ray, 3f);
 		
-		Debug.DrawRay(_rayOrigin.position, ray);
+		//Debug.DrawRay(_rayOrigin.position, ray);
 		if (hit.collider != null) {
 			if (hit.distance > 1 || hit.collider.CompareTag("Wall"))
 			{
