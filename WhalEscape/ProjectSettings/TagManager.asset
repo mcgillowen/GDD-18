@@ -12,6 +12,7 @@ TagManager:
   - EnemyDamage
   - Enemy
   - Stick
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

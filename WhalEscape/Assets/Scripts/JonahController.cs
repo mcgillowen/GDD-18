@@ -55,7 +55,7 @@ public class JonahController : MonoBehaviour
 		_collider2D = GetComponent<BoxCollider2D>();
 		_animator = GetComponent<Animator>();
 		_rigidbody2D.velocity = Vector2.zero;
-		if (_gameManager.CurrentGameState == GameManager.GameState.Production)
+		if (_gameManager.CurrentDevState == GameManager.DevelopmentState.Production)
 		{
 			Health = _gameManager.PlayerHealth;
 			Speed = _gameManager.PlayerSpeed;
@@ -76,9 +76,7 @@ public class JonahController : MonoBehaviour
 		Vector2 velocity = new Vector2(horizontalMovementAxis * Speed, 0) {y = _rigidbody2D.velocity.y};
 		_rigidbody2D.velocity = velocity;
 
-		Debug.Log(velocity);
-
-		if (Mathf.Abs(velocity.x) > 0)
+		if (Mathf.Abs(horizontalMovementAxis) > 0)
 		{
 			_animator.SetBool("Walking", true);
 		} else {
@@ -108,11 +106,12 @@ public class JonahController : MonoBehaviour
 			Debug.Log("Hit with stick");
 			var rayVec = new Vector2(transform.right.x * transform.localScale.x, 0f);
 			var hit = Physics2D.Raycast(HitRayCastPosition.position, rayVec, HitDistance);
+			_animator.SetTrigger("Attack");
 			if (hit.collider && hit.collider.CompareTag("Enemy"))
 			{
 				_attackAudioSrc.PlayOneShot(AttackSound, SoundVolume);
-				Debug.Log("Hit enemy with stick");
-				Debug.Log(HitAmount.ToString());
+				// Debug.Log("Hit enemy with stick");
+				// Debug.Log(HitAmount.ToString());
 				EnemyHealth enemyHealth = (EnemyHealth)hit.collider.GetComponent(typeof(EnemyHealth));
 				enemyHealth.TakeDamage();
 				HitAmount--;
@@ -133,9 +132,10 @@ public class JonahController : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Pickup"))
+		if (other.CompareTag("Checkpoint"))
 		{
 			other.gameObject.SetActive(false);
+			_gameManager.LevelFinished();
 		}
 
 		if (other.CompareTag("Stick"))
@@ -148,7 +148,7 @@ public class JonahController : MonoBehaviour
 
 	private void DropStick()
 	{
-		_stick.transform.position = transform.position + new Vector3(-1f * transform.localScale.x, 0.5f, 0f);
+		_stick.transform.position = transform.position + new Vector3(-0.5f * transform.localScale.x, 0.5f, 0f);
 		_stick.SetActive(true);
 		_stick = null;
 		_hasStick = false;
@@ -167,5 +167,6 @@ public class JonahController : MonoBehaviour
 	{
 		Debug.Log("Jonah Died");
 		_animator.SetBool("Dead", true);
+		_gameManager.JonahDied();
 	}
 }
