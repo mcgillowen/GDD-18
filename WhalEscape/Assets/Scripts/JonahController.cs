@@ -115,6 +115,11 @@ public class JonahController : MonoBehaviour
 			DropStick();
 		}
 
+		if (Health < 0)
+		{
+			Died();
+		}
+
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
@@ -147,5 +152,11 @@ public class JonahController : MonoBehaviour
 		Health--;
 		_animator.SetTrigger("Hit");
 		Debug.Log("Jonah took 1 damage");
+	}
+
+	public void Died()
+	{
+		Debug.Log("Jonah Died");
+		_animator.SetBool("Dead", true);
 	}
 }
