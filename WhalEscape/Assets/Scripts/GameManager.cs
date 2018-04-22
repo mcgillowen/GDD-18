@@ -177,10 +177,10 @@ public class GameManager : MonoBehaviour
 						}
 					} else
 					{
-						//_levelState = LevelState.Ready;
-						//_initLevel = true;
-						//SceneManager.LoadScene(Levels[CurrentLevel].Name);
-						InitLevelParameters();
+						_levelState = LevelState.Ready;
+						_initLevel = true;
+						SceneManager.LoadScene(Levels[CurrentLevel].Name);
+						//InitLevelParameters();
 					}
 				}
 				break;
