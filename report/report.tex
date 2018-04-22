@@ -85,7 +85,7 @@ Verbes d'actions:
 Elle vous a gobé mais elle ne vas pas s'arrêter là, son corps est un véritable labyrinthe et plein de pieges.
 
 Aucun verbe d'actions
-
+\newpage
 \section{Mechanics}
 
 \subsection{Rules}
@@ -93,7 +93,7 @@ Aucun verbe d'actions
 \subsubsection{Générales}
 \begin{itemize}
     \item Si Jonah tombe dans le vide il meurt
-    \item Jonah a X points de vie % TODO: A corriger
+    \item Jonah a 2 points de vie
     \item À chaque fois qu'il se fait taper par un enemi, il perd un point de vie
     \item Lorsque Jonah n'a plus de points de vie il meurt
     \item Jonah peut attaquer seulement si il est équipé d'une rame
@@ -117,9 +117,10 @@ Aucun verbe d'actions
 \subsubsection{Level 2}
 
 \begin{itemize}
-    \item Jonah doit monter les plateformes pour éviter de se faire ronger par l'acide gastrique qui remonte
+    \item Jonah doit monter les plateformes pour éviter de se faire pousser par les blobs d'acide
     \item Si Jonah se fait toucher par l'acide (rattrapé par la caméra) il meurt
     \item Des blobs d'acides vont traverser l'écran afin de gêner Jonah dans sa progression
+    \item La caméra monte indépendamment du personnage. Si le joueur touche le bord inférieur de la caméra, il meurt.
 \end{itemize}
 
 \begin{figure}[H]
@@ -179,6 +180,26 @@ La rame est le seul objet que Jonah peut ramasser et utiliser. On a réaliser un
     \caption{Jonah qui attaque avec la rame}
 \end{figure}
 
+\subsubsection{La baleine}
+
+Le sprite de la baleine vient du jeux Metal Slug. Là encore nous avons utilisé un sprite existant car nous n'avons pas eu le temps de dessiner nous même un sprite.
+
+\subsubsection{Fins de niveaux}
+
+Pour le premier niveau, la fin est symbolyser par un trou qui permet à Jonah de passer des instestins à l'estomac tandis que la fin du second niveau est visuellement représenté par l'évent qui permettera à Jonah de sortir de la baleine.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.1\textwidth]{res/ovent.png}
+    \caption{L'évent qui permet de s'échapper}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.1\textwidth]{res/door.png}
+    \caption{Le trou qui permet de rentrer dans l'estomac}
+\end{figure}
+
 \subsection{Aspect sonore}
 Nous avons voulu donner le maximum de retour à l'utilisateur que nous pouvions. C'est pour cela que nous avions mis un son pour beaucoup d'élément. Tout nos éléments à part le thème du jeu sont issues du site internet "freesound"
 
@@ -189,19 +210,14 @@ Nous avons voulu donner le maximum de retour à l'utilisateur que nous pouvions.
     \item Son lorsqu'il se fait toucher
 \end{enumerate}
 
-\subsubsection{Blobb}
-Le blobb est plus a considéré comme une plateforme en mouvement qu'un personnage en termes d'actions. C'est pour ça que nous n'avons pas jugé approprié de lui mettre un son.
+\subsubsection{Blob}
+Le blob est plus a considéré comme une plateforme en mouvement qu'un personnage en termes d'actions. C'est pour ça que nous n'avons pas jugé approprié de lui mettre un son.
 
 \subsubsection{Squelette}
 \begin{enumerate}
     \item Son lorsqu'il frappe
     \item Son lorsqu'il se fait toucher
 \end{enumerate}
-
-\subsubsection{La baleine}
-
-Le sprite de la baleine vient du jeux Metal Slug. Là encore nous avons utilisé un sprite existant car nous n'avons pas eu le temps de dessiner nous même un sprite.
-
 
 \subsubsection{Thème}
 Pour la musique de thème nous avons utilisé un remix 8bit de la chanson thème de Pirates of the Carribean que l'on a trouvé libre de droits sur youtube.
