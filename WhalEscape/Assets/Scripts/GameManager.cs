@@ -62,37 +62,40 @@ public class GameManager : MonoBehaviour
 		if (_gameManager == null)
 		{
 			_gameManager = this;
-			DontDestroyOnLoad(gameObject);
+			DontDestroyOnLoad(this.gameObject);
 		}
 		else
 		{
 			Destroy(gameObject);
 		}
 		
-		
+		//just for playing the scene during debug
+		if (CurrentGameState == GameState.Game) {
+			CurrentLevel = 0;
+			_initLevel = true;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
 		switch (CurrentGameState) {
-				case GameState.Start:
-					if (Input.GetButtonDown ("Jump")) {
-						CurrentGameState = GameState.Game;
-						CurrentLevel = 0;
-						_initLevel = true;
-						SceneManager.LoadScene (Levels[CurrentLevel].Name);
-					}
-					break;
-				case GameState.Game:
-					UpdateLevel ();
-					break;
-				case GameState.End:
-					if (Input.GetButtonDown ("Jump")) {
-						CurrentGameState = GameState.Start;
-						SceneManager.LoadScene ("start_screen");
-					}
-					break;
+			case GameState.Start:
+				if (Input.GetButtonDown ("Hit")) {
+					CurrentGameState = GameState.Game;
+					CurrentLevel = 0;
+					_initLevel = true;
+					SceneManager.LoadScene (Levels[CurrentLevel].Name);
+				}
+				break;
+			case GameState.Game:
+				UpdateLevel ();
+				break;
+			case GameState.End:
+				if (Input.GetButtonDown ("Hit")) {
+					CurrentGameState = GameState.Start;
+					SceneManager.LoadScene ("start_screen");
+				}
+				break;
 		}
 		
 	}
@@ -102,18 +105,24 @@ public class GameManager : MonoBehaviour
 			return;
 		_uiPanel = GameObject.Find ("UIPanel");
 		_startPanel = GameObject.Find ("StartPanel");
-		GameObject countdownTextGameObject = GameObject.Find ("StartText");
-		if (countdownTextGameObject != null)
-			_startText = countdownTextGameObject.GetComponent<Text> ();
+		GameObject startTextGameObject = GameObject.Find ("StartText");
+		if (startTextGameObject != null)
+			_startText = startTextGameObject.GetComponent<Text> ();
 		_diePanel = GameObject.Find ("DiePanel");
 		if (_diePanel != null)
 			_dieText = GameObject.Find ("DieText").GetComponent<Text> ();
-		_player = GameObject.Find ("Player");
+		_player = GameObject.Find ("Jonah");
 		if (_player != null)
 			_playerStartPosition = _player.transform.position;
 		else
 			Debug.LogError ("Object with 'Player' name not found");
 		
+		InitLevelParameters(); 
+		
+	}
+
+	private void InitLevelParameters()
+	{
 		_levelState = LevelState.Ready;
 		if (_uiPanel != null)
 			_uiPanel.SetActive (false);
@@ -125,48 +134,78 @@ public class GameManager : MonoBehaviour
 			_diePanel.SetActive (false);
 		if (_player != null) {
 			_player.transform.position = _playerStartPosition;
-			_player.GetComponent<Rigidbody2D> ().velocity = Vector3.zero;
+		    _player.GetComponent<Rigidbody2D> ().velocity = Vector3.zero;
 		}
 	}
 	
+	public bool CanPlay(){
+		return CurrentGameState == GameState.Game && _levelState == LevelState.Play;
+	}
 	
 	private void UpdateLevel(){
 		if (_initLevel) {
-			InitLevel ();
+ 			InitLevel ();
 			_initLevel = false;
 		}
 		switch (_levelState) {
 			case LevelState.Ready:
-				if (Input.GetButtonDown ("Jump")) {
+				if (Input.GetButtonDown ("Hit")) {
 					_levelState = LevelState.Start;
 					_startPanel.SetActive (false);
 					_startText.gameObject.SetActive (true);
 				}
-				break;
+				break; 
 			case LevelState.Start:
+				_levelState = LevelState.Play;
+				_uiPanel.SetActive(true);
 				break;
 			case LevelState.Play:
 				break;
 			case LevelState.End:
+				if (Input.GetButtonDown ("Hit")) {
+					if (_finishLevel) {
+						_initLevel = true;
+						CurrentLevel++;
+						if (CurrentLevel < Levels.Length) {
+							SceneManager.LoadScene (Levels[CurrentLevel].Name);
+						} else {
+							CurrentGameState = GameState.End;
+							SceneManager.LoadScene ("end_screen");
+						}
+					} else {
+						InitLevelParameters ();
+					}
+				}
 				break;
 		}
+	}
+	
+	private void Win ()
+	{
+		InitLevel();
+		_dieText.text = "You finished the level!\n\n<size=40>press jump button to continue</size>";
+		_diePanel.SetActive (true);
+		_levelState = LevelState.End;
+		_uiPanel.SetActive (false);
+		_finishLevel = true;
+	}
+	
+	private void Lose () {
+		InitLevel();
+		_dieText.text = "Jonah died!\n\n<size=40>press jump button to continue</size>";
+		_diePanel.SetActive (true);
+		_levelState = LevelState.End;
+		_uiPanel.SetActive (false);
+		_finishLevel = false;
 	}
 
 	public void LevelFinished()
 	{
-		_initLevel = true;
-		CurrentLevel++;
-		if (CurrentLevel < Levels.Length) {
-			_initLevel = true;
-			SceneManager.LoadScene (Levels[CurrentLevel].Name);
-		} else {
-			CurrentGameState = GameState.End;
-			SceneManager.LoadScene ("end_screen");
-		}
+		Win();
 	}
 
 	public void JonahDied()
 	{
-		SceneManager.LoadScene(Levels[CurrentLevel].Name);
+		Lose();
 	}
 }

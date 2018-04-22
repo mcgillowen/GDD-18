@@ -25,7 +25,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4240969203319786
 Transform:
@@ -63,4 +63,4 @@ MonoBehaviour:
     LevelDifficulty: 2
   CurrentLevel: 0
   CurrentDevState: 0
-  CurrentGameState: 1
+  CurrentGameState: 0
