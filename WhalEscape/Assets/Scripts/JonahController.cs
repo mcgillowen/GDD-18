@@ -75,6 +75,15 @@ public class JonahController : MonoBehaviour
 		
 		Vector2 velocity = new Vector2(horizontalMovementAxis * Speed, 0) {y = _rigidbody2D.velocity.y};
 		_rigidbody2D.velocity = velocity;
+
+		Debug.Log(velocity);
+
+		if (Mathf.Abs(velocity.x) > 0)
+		{
+			_animator.SetBool("Walking", true);
+		} else {
+			_animator.SetBool("Walking", false);
+		}
 		
 		Vector3 scale = transform.localScale;
 		if (velocity.x > 0) {
