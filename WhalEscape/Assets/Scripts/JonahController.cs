@@ -73,7 +73,7 @@ public class JonahController : MonoBehaviour
 		if (_gameManager != null && !_gameManager.CanPlay ()) {
 			Debug.Log("Cannot play");
 			Debug.Log(_gameManager);
-			Debug.Log(_gameManager.CurrentGameState.ToString());
+			//Debug.Log(_gameManager.CurrentGameState.ToString());
 			return;
 		}
 		
@@ -104,6 +104,12 @@ public class JonahController : MonoBehaviour
 			_moveAudioSrc.PlayOneShot(JumpSound, SoundVolume);
 			_rigidbody2D.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
 			_animator.SetTrigger("Jump");
+		}
+
+		if (transform.position.y < -2)
+		{
+			Health = 0;
+			Died();
 		}
 
 		if (_hasStick && Input.GetButtonDown("Hit"))
