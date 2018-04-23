@@ -12,6 +12,7 @@ TagManager:
   - EnemyDamage
   - Enemy
   - Stick
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -49,21 +50,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Pickup
-    uniqueID: 1565239179
-    locked: 0
-  - name: Player
-    uniqueID: 1095150279
-    locked: 0
-  - name: Enemy
-    uniqueID: 3445709579
-    locked: 0
-  - name: Platform
-    uniqueID: 408159543
+  - name: Background
+    uniqueID: 3704886401
     locked: 0
   - name: Floor
     uniqueID: 2898006599
     locked: 0
-  - name: Background
-    uniqueID: 3704886401
+  - name: Platform
+    uniqueID: 408159543
+    locked: 0
+  - name: Enemy
+    uniqueID: 3445709579
+    locked: 0
+  - name: Player
+    uniqueID: 1095150279
+    locked: 0
+  - name: Pickup
+    uniqueID: 1565239179
     locked: 0
